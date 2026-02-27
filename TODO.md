@@ -8,7 +8,8 @@
   - [x] Create `MainLayout` with animated logo and responsive navigation
   - [x] Update `routes.tsx` for multi-page routing
 - [x] Develop Content Pages
-  - [x] Build `Home.tsx` (Hero, Educational highlights, Solar options)
+  - [x] Build `Home.tsx` (Hero with Video Background, Educational highlights, Solar options)
+      - [x] Add video background to Home Hero
   - [x] Build `Process.tsx` (Installation timeline and detailed steps)
   - [x] Build `Gallery.tsx` (Moving carousel and project galleries)
   - [x] Build `FAQ.tsx` (Addressing myths and common questions)
