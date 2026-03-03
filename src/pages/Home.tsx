@@ -3,7 +3,6 @@ import { MainLayout } from '@/components/layouts/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { Sun, Leaf, Battery, Zap, CheckCircle2, Globe, ShieldCheck, History } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 const Hero = () => (
   <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
@@ -14,9 +13,9 @@ const Hero = () => (
         loop
         playsInline
         className="w-full h-full object-cover opacity-30 scale-105"
-        poster="https://miaoda-site-img.s3cdn.medo.dev/images/KLing_2ce04638-260d-4b15-91ca-68596d8ef092.jpg"
+        poster="/images/hero.jpg"
       >
-        <source src="https://player.vimeo.com/external/494163967.sd.mp4?s=73499496a77d6f5f9e8557b707077e600571d93b&profile_id=164&oauth2_token_id=57447761" type="video/mp4" />
+        <source src="/videos/hero.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/60 to-background" />

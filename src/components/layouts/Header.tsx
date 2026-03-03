@@ -1,16 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Sun, Menu, X, Instagram } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, Instagram } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
-  { name: 'Home', path: '/' },
-  { name: 'Installation Process', path: '/process' },
-  { name: 'Gallery', path: '/gallery' },
-  { name: 'FAQ', path: '/faq' },
-  { name: 'Contact Us', path: '/contact' },
+  { name: "Home", path: "/" },
+  { name: "Installation Process", path: "/process" },
+  { name: "Gallery", path: "/gallery" },
+  { name: "FAQ", path: "/faq" },
+  { name: "Contact Us", path: "/contact" },
 ];
 
 export const Header = () => {
@@ -21,25 +20,26 @@ export const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled ? 'bg-background/80 py-3 backdrop-blur-lg border-b' : 'bg-transparent py-5'
+        isScrolled
+          ? "bg-background/80 py-3 backdrop-blur-lg border-b"
+          : "bg-transparent py-5"
       }`}
     >
       <div className="container flex items-center justify-between">
+        {/* Logo + brand */}
         <Link to="/" className="flex items-center gap-2 group">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-            className="text-primary"
-          >
-            <Sun size={32} fill="currentColor" />
-          </motion.div>
+          <img
+            src="/images/logo-pragati.png" // yaha apni logo file ka path
+            alt="Pragati Solar Solution"
+            className="h-9 w-auto"
+          />
           <div className="flex flex-col">
             <span className="text-xl font-bold tracking-tighter leading-none group-hover:text-primary transition-colors">
               PRAGATI
@@ -57,22 +57,29 @@ export const Header = () => {
               key={item.path}
               to={item.path}
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                location.pathname === item.path ? 'text-primary' : 'text-foreground/70'
+                location.pathname === item.path
+                  ? "text-primary"
+                  : "text-foreground/70"
               }`}
             >
               {item.name}
             </Link>
           ))}
-          <Button asChild variant="default" size="sm" className="bg-primary text-primary-foreground">
+          <Button
+            asChild
+            variant="default"
+            size="sm"
+            className="bg-primary text-primary-foreground"
+          >
             <Link to="/contact">Get Quote</Link>
           </Button>
         </nav>
 
         {/* Mobile Nav */}
         <div className="md:hidden flex items-center gap-4">
-           <a 
-            href="https://www.instagram.com/pragatisolarsolution/" 
-            target="_blank" 
+          <a
+            href="https://www.instagram.com/pragatisolarsolution/"
+            target="_blank"
             rel="noopener noreferrer"
             className="text-foreground/70 hover:text-primary transition-colors"
           >
@@ -84,20 +91,25 @@ export const Header = () => {
                 <Menu size={24} />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-background border-l border-border">
+            <SheetContent
+              side="right"
+              className="bg-background border-l border-border"
+            >
               <nav className="flex flex-col gap-6 mt-12">
                 {navItems.map((item) => (
                   <Link
                     key={item.path}
                     to={item.path}
                     className={`text-lg font-semibold transition-colors hover:text-primary ${
-                      location.pathname === item.path ? 'text-primary' : 'text-foreground/70'
+                      location.pathname === item.path
+                        ? "text-primary"
+                        : "text-foreground/70"
                     }`}
                   >
                     {item.name}
                   </Link>
                 ))}
-                <Button asChild className="mt-4 bg-primary text-primary-foreground">
+                <Button className="mt-4 bg-primary text-primary-foreground" asChild>
                   <Link to="/contact">Get Quote</Link>
                 </Button>
               </nav>

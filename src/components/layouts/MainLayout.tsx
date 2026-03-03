@@ -1,13 +1,12 @@
-import { motion } from 'motion/react';
-import { Header } from './Header';
-import { Footer } from './Footer';
-import type { ReactNode } from 'react';
+import { Header } from "./Header";
+import { Footer } from "./Footer";
+import type { ReactNode } from "react";
 
 export const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
+    <div className="flex min-h-screen flex-col bg-transparent text-foreground selection:bg-primary selection:text-primary-foreground">
       <Header />
-      <main className="flex-1 overflow-x-hidden">
+      <main className="flex-1 overflow-x-hidden bg-transparent">
         {children}
       </main>
       <Footer />

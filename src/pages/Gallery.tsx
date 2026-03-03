@@ -1,7 +1,6 @@
 import { motion } from 'motion/react';
 import { MainLayout } from '@/components/layouts/MainLayout';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Card, CardContent } from '@/components/ui/card';
 import { Camera, Home, Building2, MoveRight } from 'lucide-react';
 
 const galleryImages = [
@@ -41,7 +40,7 @@ const MovingTicker = () => {
              <img 
                src={img.src} 
                alt={img.alt} 
-               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" 
+               className="w-full h-full object-cover transition-all duration-700" 
              />
              <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
           </div>
@@ -146,7 +145,7 @@ const GalleryPage = () => {
                className="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tighter"
             >
                VISUALIZING <br />
-               <span className="text-muted-foreground/30">THE POWER OF SUN</span>
+               <span className="gradient-text">THE POWER OF SUN</span>
             </motion.h1>
          </div>
       </section>

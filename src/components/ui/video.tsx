@@ -11,6 +11,7 @@
  */
 
 import {
+    Player,
     BigPlayButton,
     ControlBar,
     PlayToggle,
@@ -92,9 +93,9 @@ display: block;
         aspectRatio={aspectRatio}
     >
         <ControlBar
-        disableDefaultControls
-        autoHide
-        disableCompletely={!controls}
+            disableDefaultControls={true}
+            autoHide={true}
+            disableCompletely={!controls}
         >
         <PlayToggle key="play-toggle" />
         <VolumeMenuButton key="volume-menu-button" vertical />
@@ -102,7 +103,7 @@ display: block;
         <TimeDivider key="time-divider" />
         <DurationDisplay key="duration-display" />
         <ProgressControl key="progress-control" />
-        <FullscreenToggle key="fullscreen-toggle" />
+        <FullscreenToggle key="fullscreen-toggle" actions={{}} />
         </ControlBar>
         <BigPlayButton position="center" />
     </Player>
