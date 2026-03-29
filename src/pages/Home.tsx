@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { MainLayout } from '@/components/layouts/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Sun, Leaf, Battery, Zap, CheckCircle2, Globe, ShieldCheck, History, BatteryCharging, Wrench, HouseHeartIcon } from 'lucide-react';
+import { Sun, Leaf, Battery, Zap, CheckCircle2, Globe, ShieldCheck, History, BatteryCharging, Wrench, HouseHeartIcon, ArrowRight } from 'lucide-react';
 import PageMeta from '@/components/common/PageMeta';
 
 const Hero = () => (
@@ -144,21 +144,35 @@ const SolarOptions = () => (
           </div>
 
           <div className="space-y-6">
-            <div className="p-6 rounded-2xl border border-border bg-background/40 hover:bg-background/60 transition-colors">
-              <div className="flex items-center gap-4 mb-3">
-                <Battery className="text-primary" />
-                <h4 className="text-xl font-bold">Hybrid System</h4>
+            <Link
+              to="/faq#hybrid-system"
+              className="group block rounded-2xl border border-border bg-background/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-background/60"
+            >
+              <div className="mb-3 flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <Battery className="text-primary" />
+                  <h4 className="text-xl font-bold">Hybrid System</h4>
+                </div>
+                <ArrowRight className="text-primary/70 transition-transform duration-300 group-hover:translate-x-1" size={18} />
               </div>
-              <p className="text-muted-foreground">Includes battery backup for 24-hour power supply, even after sunset. Perfect for total independence.</p>
-            </div>
+              <p className="text-muted-foreground">Includes battery backup for 24-hour power supply, even after sunset. Perfect for homes that need both savings and backup.</p>
+              <p className="mt-4 text-sm font-semibold text-primary">View detailed FAQ explanation</p>
+            </Link>
 
-            <div className="p-6 rounded-2xl border border-border bg-background/40 hover:bg-background/60 transition-colors">
-              <div className="flex items-center gap-4 mb-3">
-                <Sun className="text-accent" />
-                <h4 className="text-xl font-bold">On-Grid System</h4>
+            <Link
+              to="/faq#on-grid-system"
+              className="group block rounded-2xl border border-border bg-background/40 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:bg-background/60"
+            >
+              <div className="mb-3 flex items-center justify-between gap-4">
+                <div className="flex items-center gap-4">
+                  <Sun className="text-accent" />
+                  <h4 className="text-xl font-bold">On-Grid System</h4>
+                </div>
+                <ArrowRight className="text-accent/70 transition-transform duration-300 group-hover:translate-x-1" size={18} />
               </div>
-              <p className="text-muted-foreground">Provides power during sunlight hours. Highly efficient and cost-effective for daytime heavy users.</p>
-            </div>
+              <p className="text-muted-foreground">Provides power during sunlight hours. Highly efficient and cost-effective for users focused on lower electricity bills.</p>
+              <p className="mt-4 text-sm font-semibold text-accent">View detailed FAQ explanation</p>
+            </Link>
           </div>
         </motion.div>
 

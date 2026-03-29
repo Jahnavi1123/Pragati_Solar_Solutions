@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import {
-  submitContactInquiry,
-  type SubmitContactInquiryResponse,
-} from "@/lib/contactInquiries";
+import { submitContactInquiry } from "@/lib/contactInquiries";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { Button } from "@/components/ui/button";
 import PageMeta from "@/components/common/PageMeta";
@@ -30,19 +27,10 @@ import {
   Youtube,
 } from "lucide-react";
 
-type ContactSubmissionStatus = Pick<
-  SubmitContactInquiryResponse,
-  "alertSent" | "inquiryStored" | "warning"
-> & {
-  message: string;
-};
-
 const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [submissionStatus, setSubmissionStatus] =
-    useState<ContactSubmissionStatus | null>(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -57,7 +45,6 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
-    setSubmissionStatus(null);
 
     try {
       const result = await submitContactInquiry(formData);
@@ -66,16 +53,6 @@ const ContactForm = () => {
         setError("Could not submit form. Please try again.");
         return;
       }
-
-      setSubmissionStatus({
-        alertSent: result.alertSent,
-        inquiryStored: result.inquiryStored,
-        message: result.alertSent
-          ? "Your inquiry was saved in Supabase and our team received the WhatsApp alert."
-          : result.warning ??
-            "Your inquiry was saved in Supabase, but the WhatsApp alert has not been confirmed yet.",
-        warning: result.warning,
-      });
 
       setIsSuccess(true);
       setFormData({
@@ -111,29 +88,8 @@ const ContactForm = () => {
             hours to schedule a site visit.
           </p>
         </div>
-        {submissionStatus && (
-          <div
-            className={`rounded-2xl border px-5 py-4 text-left ${
-              submissionStatus.alertSent
-                ? "border-emerald-500/30 bg-emerald-500/10"
-                : "border-amber-500/30 bg-amber-500/10"
-            }`}
-          >
-            <p className="text-sm font-semibold text-foreground">
-              {submissionStatus.inquiryStored
-                ? "Lead saved in Contact_inquiries"
-                : "Lead status unavailable"}
-            </p>
-            <p className="mt-1 text-sm text-muted-foreground">
-              {submissionStatus.message}
-            </p>
-          </div>
-        )}
         <Button
-          onClick={() => {
-            setIsSuccess(false);
-            setSubmissionStatus(null);
-          }}
+          onClick={() => setIsSuccess(false)}
           variant="outline"
           className="rounded-full px-10"
         >

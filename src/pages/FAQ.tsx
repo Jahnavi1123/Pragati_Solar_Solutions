@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import PageMeta from "@/components/common/PageMeta";
+import { useLocation } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
@@ -14,13 +15,87 @@ import {
   ShieldCheck,
   Zap,
   Info,
+  Battery,
+  Sun,
 } from "lucide-react";
+
+const systemGuides = [
+  {
+    id: "hybrid-system",
+    title: "Hybrid System",
+    icon: Battery,
+    accentClass: "text-primary",
+    borderClass: "border-primary/30",
+    bgClass: "bg-primary/10",
+    summary:
+      "A hybrid solar system combines solar panels, a hybrid inverter, grid connection, and battery backup. It helps you use solar power during the day, store extra energy for later, and keep important appliances running during power cuts.",
+    details: [
+      {
+        label: "How it works",
+        value:
+          "During the day, solar panels run your load first. Extra solar energy can charge the battery, and any remaining excess may go to the grid if the system is configured for export.",
+      },
+      {
+        label: "Best for",
+        value:
+          "Homes and businesses in areas with regular power cuts, users who need night backup, and families who want both electricity savings and energy security.",
+      },
+      {
+        label: "Main advantages",
+        value:
+          "Backup during outages, better use of your solar energy after sunset, and more control over essential loads like lights, fans, Wi-Fi, fridge, or office equipment.",
+      },
+      {
+        label: "Important to know",
+        value:
+          "Hybrid systems usually cost more than on-grid systems because they include batteries and hybrid inverters. Battery capacity should be selected carefully based on the appliances you want to run during a blackout.",
+      },
+    ],
+  },
+  {
+    id: "on-grid-system",
+    title: "On-Grid System",
+    icon: Sun,
+    accentClass: "text-accent",
+    borderClass: "border-accent/30",
+    bgClass: "bg-accent/10",
+    summary:
+      "An on-grid solar system is connected directly to the electricity grid and does not use batteries. It is designed mainly to reduce your electricity bill by running daytime loads on solar power and exporting extra energy through net metering where available.",
+    details: [
+      {
+        label: "How it works",
+        value:
+          "During sunlight hours, your home or business uses solar energy first. If solar production is higher than your usage, the extra power can be sent to the grid and adjusted through net metering as per local rules.",
+      },
+      {
+        label: "Best for",
+        value:
+          "Users with strong daytime electricity consumption, reliable grid supply, and a priority on lower upfront cost and faster return on investment.",
+      },
+      {
+        label: "Main advantages",
+        value:
+          "Lower installation cost than hybrid systems, simple design, excellent bill savings, and fewer components to maintain because there is no battery bank.",
+      },
+      {
+        label: "Important to know",
+        value:
+          "A standard on-grid system shuts down during a power cut for safety and will not provide backup at that time. It is the right choice when your main goal is savings, not blackout protection.",
+      },
+    ],
+  },
+];
 
 const faqs = [
   {
     question: "What is the difference between On-Grid and Hybrid systems?",
     answer:
-      "On-Grid systems operate only during sunlight hours and send excess power back to the grid. Hybrid systems include battery backup, allowing you to have a 24-hour power supply even after sunset.",
+      "On-grid systems are built mainly for bill savings and work best where grid supply is stable. Hybrid systems combine solar with battery backup, so they are better for users who want both savings and power during outages.",
+  },
+  {
+    question: "Which system should I choose for regular power cuts?",
+    answer:
+      "If your area faces frequent or long power cuts, a hybrid system is usually the better choice because it can support selected loads from the battery when the grid is down. If your area has stable electricity and your main goal is reducing bills, an on-grid system is typically more cost-effective.",
   },
   {
     question: "How long is the lifespan of a solar installation?",
@@ -189,8 +264,29 @@ const myths = [
 ];
 
 const FAQPage = () => {
+  const location = useLocation();
   const [showAllMyths, setShowAllMyths] = useState(false);
   const visibleMyths = showAllMyths ? myths : myths.slice(0, 6);
+
+  useEffect(() => {
+    if (!location.hash) {
+      return;
+    }
+
+    const id = decodeURIComponent(location.hash.replace("#", ""));
+    const frame = window.requestAnimationFrame(() => {
+      const element = document.getElementById(id);
+
+      if (!element) {
+        return;
+      }
+
+      const top = element.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top, behavior: "smooth" });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [location.hash]);
 
   return (
     <MainLayout>
@@ -220,6 +316,73 @@ const FAQPage = () => {
               we help you make the switch correctly.
             </p>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16 space-y-8"
+          >
+            <div className="max-w-3xl mx-auto text-center space-y-4 text-white">
+              <h2 className="text-3xl md:text-5xl font-black tracking-tight uppercase">
+                Hybrid vs <span className="gradient-text">On-Grid</span>
+              </h2>
+              <p className="text-base md:text-lg text-gray-200 leading-relaxed">
+                Compare both system types clearly before you choose. These are
+                the same two solutions shown on the home page.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+              {systemGuides.map((guide) => {
+                const Icon = guide.icon;
+
+                return (
+                  <div
+                    id={guide.id}
+                    key={guide.id}
+                    className={`scroll-mt-32 rounded-3xl border ${guide.borderClass} bg-black/55 p-8 backdrop-blur-sm`}
+                  >
+                    <div className="mb-6 flex items-center gap-4">
+                      <div
+                        className={`flex h-14 w-14 items-center justify-center rounded-2xl ${guide.bgClass}`}
+                      >
+                        <Icon className={guide.accentClass} size={28} />
+                      </div>
+                      <div className="space-y-1">
+                        <h3 className="text-2xl font-bold text-white">
+                          {guide.title}
+                        </h3>
+                        <p className="text-sm uppercase tracking-[0.25em] text-gray-400">
+                          Solar System Guide
+                        </p>
+                      </div>
+                    </div>
+
+                    <p className="text-base leading-relaxed text-gray-200">
+                      {guide.summary}
+                    </p>
+
+                    <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {guide.details.map((detail) => (
+                        <div
+                          key={`${guide.id}-${detail.label}`}
+                          className="rounded-2xl border border-white/10 bg-white/5 p-5"
+                        >
+                          <p className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                            {detail.label}
+                          </p>
+                          <p className="mt-3 text-sm leading-relaxed text-gray-100">
+                            {detail.value}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <motion.div
