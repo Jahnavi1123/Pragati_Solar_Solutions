@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { MainLayout } from "@/components/layouts/MainLayout";
+import PageMeta from "@/components/common/PageMeta";
 import {
   ClipboardCheck,
   MapPin,
@@ -14,8 +15,8 @@ import {
 
 const steps = [
   {
-    icon: <ClipboardCheck size={28} />,
-    title: "Registration",
+    icon: <Search size={28} />,
+    title: "Enquiry",
     desc: "Start your solar journey by registering with us. We guide you through the initial documentation.",
     badge: "Step 1",
   },
@@ -26,27 +27,27 @@ const steps = [
     badge: "Step 2",
   },
   {
-    icon: <Search size={28} />,
-    title: "Feasibility Checking",
-    desc: "We analyze the technical data to ensure a solar installation is viable and determine the best panel placement.",
+    icon: <FileEdit size={28} />,
+    title: "Quotation",
+    desc: "Detailed breakup of cost, components, and timeline is shared.",
     badge: "Step 3",
   },
   {
-    icon: <FileEdit size={28} />,
-    title: "Quotation Filling",
-    desc: "Receive a detailed breakdown of costs, components, and expected energy generation for your specific site.",
-    badge: "Step 4",
-  },
-  {
     icon: <ThumbsUp size={28} />,
-    title: "Approval",
-    desc: "Once the quotation is accepted and initial payment made, we handle necessary regulatory approvals.",
-    badge: "Step 5",
+    title: "Customer Approval",
+    desc: "Once the quotation is accepted and initial payment is made, our team handles the necessary regulatory approvals.",
+    badge: "Step 4",
   },
   {
     icon: <Hammer size={28} />,
     title: "Installation",
-    desc: "Our expert team installs the panels and net metering systems according to the payment milestones.",
+    desc: "Our expert team installs the project as per the approved quotation.",
+    badge: "Step 5",
+  },
+  {
+    icon: <ClipboardCheck size={28} />,
+    title: "Government Subsidy",
+    desc: "Credited back to the customer account as per the government norms.",
     badge: "Step 6",
   },
 ];
@@ -54,24 +55,29 @@ const steps = [
 const milestones = [
   {
     percent: "10%",
-    label: "Booking Amount",
+    label: "Registration on Government Portal",
     desc: "Required to initiate registration and site assessment.",
   },
   {
-    percent: "80%",
-    label: "Second Installment",
+    percent: "85%",
+    label: "Procurement",
     desc: "Paid before the procurement and installation of components.",
   },
   {
-    percent: "10%",
+    percent: "5%",
     label: "Final Payment",
-    desc: "Paid after construction and successful net metering.",
+    desc: "Paid after successful commissioning of the project.",
   },
 ];
 
 const ProcessPage = () => {
   return (
     <MainLayout>
+      <PageMeta
+        title="Solar Installation Process | Pragati Solar Solutions"
+        description="Learn the step-by-step solar installation process with Pragati Solar, from enquiry and site visit to quotation, approvals, installation, and subsidy claims."
+        keywords="solar installation process, rooftop solar workflow, solar project steps, solar subsidy process, solar site assessment, solar commissioning"
+      />
       {/* FULL-PAGE SECTION WITH BACKGROUND VIDEO */}
       <section className="relative min-h-screen pt-32 pb-24">
         {/* background video tied to this page only */}
@@ -101,18 +107,21 @@ const ProcessPage = () => {
                 PM SURYA GHAR APP
               </span>
             </motion.div>
+
             <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight">
               YOUR JOURNEY TO <br />
               <span className="gradient-text">ENERGY INDEPENDENCE</span>
             </h1>
+
             <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
-              We've streamlined the solar installation process. From the first
+              We&apos;ve streamlined the solar installation process. From the first
               click to the final connection, we are with you at every step.
             </p>
           </div>
 
           <div className="max-w-5xl mx-auto relative">
             <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-white/20 md:-translate-x-1/2 hidden sm:block" />
+
             <div className="space-y-12 sm:space-y-24">
               {steps.map((step, idx) => (
                 <motion.div
@@ -133,9 +142,11 @@ const ProcessPage = () => {
                       <span className="text-primary font-bold tracking-widest uppercase text-sm">
                         {step.badge}
                       </span>
+
                       <h3 className="text-2xl font-bold text-white">
                         {step.title}
                       </h3>
+
                       <p className="text-gray-200 leading-relaxed max-w-md">
                         {step.desc}
                       </p>
@@ -154,7 +165,7 @@ const ProcessPage = () => {
         </div>
       </section>
 
-      {/* PAYMENT + SUBSIDY SECTION (normal bg, video pe hi overlay karega) */}
+      {/* PAYMENT + SUBSIDY SECTION */}
       <section className="py-24 bg-black/40">
         <div className="container px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -168,6 +179,7 @@ const ProcessPage = () => {
                 <CreditCard className="text-primary" />
                 Payment Milestones
               </h2>
+
               <div className="grid gap-6">
                 {milestones.map((milestone, idx) => (
                   <div
@@ -177,6 +189,7 @@ const ProcessPage = () => {
                     <div className="w-16 h-16 rounded-xl bg-black/70 border border-primary/40 flex items-center justify-center font-black text-xl text-primary">
                       {milestone.percent}
                     </div>
+
                     <div>
                       <h4 className="font-bold text-lg text-white">
                         {milestone.label}
@@ -194,25 +207,37 @@ const ProcessPage = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="bg-black/70 border border-primary/30 rounded-3xl p-8 md:p-12 space-y-8"
+              className="relative overflow-hidden rounded-3xl border border-primary/30 p-8 md:p-12"
             >
-              <div className="p-4 bg-primary/20 rounded-2xl inline-block mb-4">
-                <Zap className="text-primary" size={32} />
-              </div>
-              <h3 className="text-2xl font-bold text-white">
-                Important Note on Subsidy
-              </h3>
-              <p className="text-gray-200 leading-relaxed">
-                One of the common myths is about the subsidy timing. Please note
-                that the <strong>Subsidy is credited after the commissioning
-                report</strong> is filed. It is not immediately returned to the
-                customer after installation.
-              </p>
-              <div className="pt-6 border-t border-primary/30">
-                <p className="text-sm font-medium flex items-center gap-2 text-gray-200">
-                  <Smartphone className="text-primary" size={16} />
-                  Download PM SURYA GHAR App for more info.
+              {/* background image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: "url('/images/solar-subsidy.jpg')" }}
+              />
+              <div className="absolute inset-0 bg-black/75" />
+
+              <div className="relative z-10 space-y-8">
+                <div className="p-4 bg-primary/20 rounded-2xl inline-block mb-4">
+                  <Zap className="text-primary" size={32} />
+                </div>
+
+                <h3 className="text-2xl font-bold text-white">
+                  Important Note on Subsidy
+                </h3>
+
+                <p className="text-gray-200 leading-relaxed">
+                  One of the common myths is about the subsidy timing. Please note
+                  that the <strong>subsidy is credited after the commissioning
+                  report</strong> is filed. It is not immediately returned to the
+                  customer after installation.
                 </p>
+
+                <div className="pt-6 border-t border-primary/30">
+                  <p className="text-sm font-medium flex items-center gap-2 text-gray-200">
+                    <Smartphone className="text-primary" size={16} />
+                    Download PM SURYA GHAR App for more info.
+                  </p>
+                </div>
               </div>
             </motion.div>
           </div>

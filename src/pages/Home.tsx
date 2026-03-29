@@ -2,7 +2,8 @@ import { motion } from 'motion/react';
 import { MainLayout } from '@/components/layouts/MainLayout';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Sun, Leaf, Battery, Zap, CheckCircle2, Globe, ShieldCheck, History } from 'lucide-react';
+import { Sun, Leaf, Battery, Zap, CheckCircle2, Globe, ShieldCheck, History, BatteryCharging, Wrench, HouseHeartIcon } from 'lucide-react';
+import PageMeta from '@/components/common/PageMeta';
 
 const Hero = () => (
   <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
@@ -30,15 +31,14 @@ const Hero = () => (
       >
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary mb-4 backdrop-blur-sm">
           <Zap size={16} />
-          <span className="text-sm font-semibold tracking-wider uppercase">Future is Solar</span>
+          <span className="text-sm font-semibold tracking-wider uppercase">Secure your Future</span>
         </div>
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none">
           EMPOWER YOUR <br />
           <span className="gradient-text">GREEN FUTURE</span>
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Pragati Solar Solution provides sustainable, efficient, and cost-effective renewable energy for residential and commercial customers.
-        </p>
+         Pragati Solar provides sustainable, efficient & cost effective renewable energy solutions for residential rooftop projects and commercial establishments.        </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
           <Button asChild size="lg" className="h-14 px-10 text-lg font-bold bg-primary text-primary-foreground hover:scale-105 transition-transform rounded-full">
             <Link to="/contact">Book Free Consultation</Link>
@@ -71,7 +71,12 @@ const Features = () => (
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {[
+        {[{
+            icon: <HouseHeartIcon className="text-secondary" size={40} />,
+            title: "Subsidy Benefits",
+            desc: "Avail government subsidy at attractive ratesenergy.",
+            color: "secondary"
+          },
           {
             icon: <Leaf className="text-secondary" size={40} />,
             title: "Eco-Friendly",
@@ -89,7 +94,19 @@ const Features = () => (
             title: "Long Lifespan",
             desc: "Enjoy 12-13 years of operational life with 25-30 years of warranty protection.",
             color: "accent"
-          }
+          },
+          {
+           icon: <BatteryCharging className="text-secondary" size={40} />,
+            title: "Energy Independence",
+            desc: "Depend less on grid electricity and protect yourself from rising power costs.",
+            color: "secondary"
+           },
+           {
+             icon: <Wrench className="text-accent" size={40} />,
+             title: "Expert Installation",
+             desc: "Get professional installation support for a safe and efficient solar setup.",
+             color: "accent"
+             }
         ].map((feature, idx) => (
           <motion.div
             key={idx}
@@ -237,6 +254,11 @@ const EducationalContent = () => (
 const HomePage = () => {
   return (
     <MainLayout>
+      <PageMeta
+        title="Pragati Solar Solutions | Rooftop Solar Panels & Renewable Energy"
+        description="Pragati Solar offers efficient residential and commercial rooftop solar installations in India with government subsidies, expert design, and sustainable energy solutions."
+        keywords="solar energy, rooftop solar, solar panels, solar installation, renewable energy, solar subsidy, green energy, home solar, commercial solar"
+      />
       <Hero />
       <Features />
       <SolarOptions />

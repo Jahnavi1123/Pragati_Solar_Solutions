@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { MainLayout } from "@/components/layouts/MainLayout";
+import PageMeta from "@/components/common/PageMeta";
 import {
   Accordion,
   AccordionContent,
@@ -19,12 +20,12 @@ const faqs = [
   {
     question: "What is the difference between On-Grid and Hybrid systems?",
     answer:
-      "On-Grid systems operate only during sunlight hours and send excess power back to the grid. Hybrid systems include a battery backup, allowing you to have a 24-hour power supply even after sunset.",
+      "On-Grid systems operate only during sunlight hours and send excess power back to the grid. Hybrid systems include battery backup, allowing you to have a 24-hour power supply even after sunset.",
   },
   {
     question: "How long is the lifespan of a solar installation?",
     answer:
-      "Typically, solar panels have an operational life of 12-13 years, but they come with industry-leading warranties ranging from 25 to 30 years.",
+      "A well-installed solar power system can serve reliably for 25-30 years. Solar panels generally last 25-30 years, while inverters often need replacement after about 8-12 years depending on usage and maintenance.",
   },
   {
     question: "Does solar energy work on cloudy days?",
@@ -39,7 +40,7 @@ const faqs = [
   {
     question: "Is the government scheme (Yojna) beneficial?",
     answer:
-      "Yes, the government provides significant subsidies for residential solar installations. Registration through the PM SURYA GHAR App ensures you get the full benefits of the scheme.",
+      "Yes, the government provides significant subsidies for residential solar installations. Registration through the PM Surya Ghar app helps ensure you receive the available benefits under the scheme.",
   },
   {
     question: "What is a solar installation?",
@@ -54,42 +55,42 @@ const faqs = [
   {
     question: "How much does a rooftop solar system cost?",
     answer:
-      "The cost of a rooftop solar system depends on the system size (kW), type of system (on‑grid, off‑grid, or hybrid), location, and component quality. In India, typical residential systems are often in the range of roughly ₹50,000–₹70,000 per kW, although prices vary by brand and state policies.",
+      "The cost of a rooftop solar system depends on the system size (kW), type of system (on-grid, off-grid, or hybrid), location, and component quality. In India, typical residential systems are often in the range of roughly Rs. 50,000-Rs. 70,000 per kW, although prices vary by brand and state policies.",
   },
   {
     question: "What size solar system do I need for my home?",
     answer:
-      "Your solar system size depends on your average monthly electricity bill, daily energy consumption, and available shadow‑free roof area. As a general guideline, smaller homes (1–2 BHK) usually require 1–3 kW systems, while larger homes may need 3–5 kW or more.",
+      "Your solar system size depends on your average monthly electricity bill, daily energy consumption, and available shadow-free roof area. As a general guideline, smaller homes (1-2 BHK) usually require 3-5 kW systems, while larger homes may need 5 kW or more.",
   },
   {
-    question: "What is the difference between on‑grid, off‑grid, and hybrid solar systems?",
+    question: "What is the difference between on-grid, off-grid, and hybrid solar systems?",
     answer:
-      "On‑grid systems are connected to the electricity grid, do not use batteries, and are usually the most cost‑effective. Off‑grid systems work independently with batteries and are suitable for locations with frequent or long power cuts. Hybrid systems combine grid connection with battery backup, offering both savings and energy security.",
+      "On-grid systems are connected to the electricity grid, do not use batteries, and are usually the most cost-effective. Off-grid systems work independently with batteries and are suitable for locations with frequent or long power cuts. Hybrid systems combine grid connection with battery backup, offering both savings and energy security.",
   },
   {
     question: "What happens at night or during a power cut?",
     answer:
-      "On‑grid systems shut down during a grid failure for safety reasons and do not supply power at that time. Off‑grid systems continue to supply power from their batteries. Hybrid systems can use both the battery and the grid, providing backup during outages while still exporting excess energy when available.",
+      "On-grid systems shut down during a grid failure for safety reasons and do not supply power at that time. Off-grid systems continue to supply power from their batteries. Hybrid systems can use both the battery and the grid, providing backup during outages while still exporting excess energy when available.",
   },
   {
     question: "How long do solar panels and inverters last?",
     answer:
-      "Most quality solar panels have a performance life of around 25–30 years, with gradual efficiency reduction over time. Inverters generally have a lifespan of about 8–12 years, depending on usage, environment, and maintenance.",
+      "Most quality solar panels have a performance life of around 25-30 years, with gradual efficiency reduction over time. Inverters generally have a lifespan of about 8-12 years, depending on usage, environment, and maintenance.",
   },
   {
     question: "Do rooftop solar panels require a lot of maintenance?",
     answer:
-      "Rooftop solar systems require very low maintenance. In most cases, periodic cleaning of the panels every 2–4 weeks to remove dust and debris is sufficient to maintain good energy generation. Electrical components should be inspected as per the installer’s recommendation.",
+      "Rooftop solar systems require very low maintenance. In most cases, periodic cleaning of the panels every 2-4 weeks to remove dust and debris is sufficient to maintain good energy generation. Electrical components should be inspected as per the installer's recommendation.",
   },
   {
     question: "How much can I save on my electricity bills with solar?",
     answer:
-      "A properly sized rooftop solar system can reduce your electricity bills by approximately 70–90 percent, depending on your consumption pattern and tariff. Many residential customers recover their investment within an estimated 3–6 years through bill savings.",
+      "A properly sized rooftop solar system can reduce your electricity bills by approximately 70-90 percent, depending on your consumption pattern and tariff. Many residential customers recover their investment within an estimated 3-6 years through bill savings.",
   },
   {
     question: "Does my roof type and direction matter for solar installation?",
     answer:
-      "Yes. Solar panels can be installed on RCC roofs, metal sheet roofs, and ground‑mounted structures, but the surface must be structurally sound and receive good sunlight for at least 5–6 hours daily. South‑facing roofs (in India) usually provide the best energy generation.",
+      "Yes. Solar panels can be installed on RCC roofs, metal sheet roofs, and ground-mounted structures, but the surface must be structurally sound and receive good sunlight for at least 5-6 hours daily. South-facing roofs in India usually provide the best energy generation.",
   },
   {
     question: "Will solar panels generate electricity in cloudy or rainy weather?",
@@ -99,22 +100,22 @@ const faqs = [
   {
     question: "How long does the solar installation process take?",
     answer:
-      "Once all approvals, site assessment, and material procurement are completed, a standard residential rooftop solar installation typically takes about 1–3 days to complete, including panel mounting, wiring, and commissioning.",
+      "Once all approvals, site assessment, and material procurement are completed, a standard residential rooftop solar installation typically takes about 1-3 days to complete, including panel mounting, wiring, and commissioning.",
   },
   {
     question: "Are government subsidies available for residential rooftop solar?",
     answer:
-      "Yes. In India, residential customers can avail subsidies under central schemes such as PM Surya Ghar and MNRE‑backed programs. The exact subsidy amount depends on the system capacity and the latest government guidelines for your state and distribution company.",
+      "Yes. In India, residential customers can avail subsidies under central schemes such as PM Surya Ghar and MNRE-backed programs. The exact subsidy amount depends on the system capacity and the latest government guidelines for your state and distribution company.",
   },
   {
     question: "Is a rooftop solar power system safe?",
     answer:
-      "A professionally designed and installed rooftop solar system is safe. Proper earthing, surge protection, correct wiring, and certified components ensure compliance with electrical safety standards and long‑term reliable operation.",
+      "A professionally designed and installed rooftop solar system is safe. Proper earthing, surge protection, correct wiring, and certified components ensure compliance with electrical safety standards and long-term reliable operation.",
   },
   {
     question: "Can I monitor my solar power generation and savings?",
     answer:
-      "Yes. Most modern grid‑tied and hybrid inverters provide monitoring through mobile apps or web portals. You can track daily and monthly energy generation, approximate savings, and system health in real time from your phone.",
+      "Yes. Most modern grid-tied and hybrid inverters provide monitoring through mobile apps or web portals. You can track daily and monthly energy generation, approximate savings, and system health in real time from your phone.",
   },
 ];
 
@@ -128,7 +129,7 @@ const myths = [
   {
     title: "Battery dependency",
     myth: "You need batteries for all solar power systems.",
-    fact: "On‑grid systems work without batteries and directly feed power to your home and the grid. Batteries are required mainly for hybrid or off‑grid systems where backup power is needed after sunset or during power cuts.",
+    fact: "On-grid systems work without batteries and directly feed power to your home and the grid. Batteries are required mainly for hybrid or off-grid systems where backup power is needed after sunset or during power cuts.",
     icon: <Zap className="text-primary" />,
   },
   {
@@ -140,7 +141,7 @@ const myths = [
   {
     title: "Solar panels only work in hot weather",
     myth: "Solar panels need very high temperatures to generate electricity and only work well in hot climates.",
-    fact: "Solar panels generate electricity from sunlight, not heat. Photovoltaic (PV) cells convert sunlight into electricity, so panels work efficiently even in moderate or cold climates. Very high temperatures can slightly reduce efficiency.",
+    fact: "Solar panels generate electricity from sunlight, not heat. Photovoltaic cells convert sunlight into electricity, so panels work efficiently even in moderate or cold climates. Very high temperatures can slightly reduce efficiency.",
     icon: <AlertTriangle className="text-destructive" />,
   },
   {
@@ -151,8 +152,8 @@ const myths = [
   },
   {
     title: "Solar installation is too expensive for most homeowners",
-    myth: "Rooftop solar is only for very high‑income households because installation costs are too high.",
-    fact: "While the upfront cost of a residential solar system can appear high, it is a long‑term investment. Most well‑designed systems recover their cost in a few years through reduced electricity bills, and government subsidies further lower the initial cost.",
+    myth: "Rooftop solar is only for very high-income households because installation costs are too high.",
+    fact: "While the upfront cost of a residential solar system can appear high, it is a long-term investment. Most well-designed systems recover their cost in a few years through reduced electricity bills, and government subsidies further lower the initial cost.",
     icon: <ShieldCheck className="text-secondary" />,
   },
   {
@@ -164,25 +165,25 @@ const myths = [
   {
     title: "Solar systems provide power during blackouts automatically",
     myth: "Any solar system will keep my home powered during a grid failure without extra equipment.",
-    fact: "Standard on‑grid solar systems shut down automatically during power outages for safety. To get backup power during blackouts, you need a hybrid system or an off‑grid system with battery storage, designed specifically for backup.",
+    fact: "Standard on-grid solar systems shut down automatically during power outages for safety. To get backup power during blackouts, you need a hybrid system or an off-grid system with battery storage, designed specifically for backup.",
     icon: <AlertTriangle className="text-destructive" />,
   },
   {
     title: "Solar panels require high maintenance",
     myth: "Rooftop solar needs frequent technical servicing and is difficult to maintain.",
-    fact: "Solar panels have no moving parts and are low‑maintenance. Regular cleaning to remove dust and dirt is usually sufficient, and quality components come with long warranties for added peace of mind.",
+    fact: "Solar panels have no moving parts and are low-maintenance. Regular cleaning to remove dust and dirt is usually sufficient, and quality components come with long warranties for added peace of mind.",
     icon: <Zap className="text-primary" />,
   },
   {
     title: "Solar energy cannot meaningfully reduce electricity bills",
     myth: "Even with solar, electricity bills remain almost the same, so it is not worth installing.",
-    fact: "A correctly sized rooftop solar system can reduce electricity bills by around 70–90 percent, depending on your consumption and tariff structure. Many users are left only with minimal fixed charges after solar.",
+    fact: "A correctly sized rooftop solar system can reduce electricity bills by around 70-90 percent, depending on your consumption and tariff structure. Many users are left only with minimal fixed charges after solar.",
     icon: <ShieldCheck className="text-secondary" />,
   },
   {
     title: "Solar technology is not environmentally friendly",
     myth: "Solar panels consume more energy to manufacture than they generate over their life.",
-    fact: "Most solar panels offset the energy used in their manufacturing within a few years. Over a 25–30 year lifespan, they produce far more clean energy than was required to make them, significantly reducing carbon emissions compared to conventional power sources.",
+    fact: "Most solar panels offset the energy used in their manufacturing within a few years. Over a 25-30 year lifespan, they produce far more clean energy than was required to make them, significantly reducing carbon emissions compared to conventional power sources.",
     icon: <Info className="text-secondary" />,
   },
 ];
@@ -193,9 +194,12 @@ const FAQPage = () => {
 
   return (
     <MainLayout>
-      {/* SINGLE BACKGROUND IMAGE FOR ENTIRE FAQ CONTENT */}
+      <PageMeta
+        title="Solar FAQ | Pragati Solar Solutions"
+        description="Find answers to common solar questions about rooftop systems, subsidies, installations, maintenance, and the benefits of switching to clean solar energy."
+        keywords="solar FAQ, rooftop solar questions, solar subsidy answers, solar installation myths, renewable energy questions, solar panel information"
+      />
       <section className="relative min-h-screen pt-32 pb-24">
-        {/* background image */}
         <div className="absolute inset-0 -z-10">
           <img
             src="/images/faq-hero.png"
@@ -205,7 +209,6 @@ const FAQPage = () => {
           <div className="absolute inset-0 bg-black/70" />
         </div>
 
-        {/* content */}
         <div className="container px-4">
           <div className="max-w-4xl mx-auto text-center mb-24 space-y-6 text-white">
             <h1 className="text-4xl md:text-7xl font-black tracking-tighter leading-none">
@@ -219,7 +222,6 @@ const FAQPage = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            {/* General FAQ */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -234,11 +236,7 @@ const FAQPage = () => {
                   General FAQ
                 </h2>
               </div>
-              <Accordion
-                type="single"
-                collapsible
-                className="w-full space-y-4"
-              >
+              <Accordion type="single" collapsible className="w-full space-y-4">
                 {faqs.map((faq, idx) => (
                   <AccordionItem
                     key={idx}
@@ -256,7 +254,6 @@ const FAQPage = () => {
               </Accordion>
             </motion.div>
 
-            {/* Myths with show more/less */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -323,7 +320,7 @@ const FAQPage = () => {
                       showAllMyths ? "rotate-180" : ""
                     }`}
                   >
-                    ↓
+                    v
                   </span>
                 </button>
               )}

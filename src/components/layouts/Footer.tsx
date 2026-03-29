@@ -101,7 +101,7 @@ export const Footer = () => {
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-primary shrink-0" />
                 <span className="text-sm text-muted-foreground">
-                 +91 9719225556, +91 7253990990
+                  +91 7253990990
                 </span>
               </li>
               <li className="flex items-center gap-3">

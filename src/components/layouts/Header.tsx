@@ -38,14 +38,18 @@ export const Header = () => {
           <img
             src="/images/logo-pragati.png" // yaha apni logo file ka path
             alt="Pragati Solar Solution"
-            className="h-9 w-auto"
+            className={
+              location.pathname === "/"
+                ? "h-16 md:h-20 w-auto shrink-0"
+                : "h-12 md:h-14 w-auto shrink-0"
+            }
           />
           <div className="flex flex-col">
-            <span className="text-xl font-bold tracking-tighter leading-none group-hover:text-primary transition-colors">
+            <span className="text-xl font-bold tracking-tighter leading-none text-primary transition-colors">
               PRAGATI
             </span>
-            <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-              Solar Solution
+            <span className="text-xl font-bold tracking-tighter leading-none text-foreground transition-colors">
+              SOLAR SOLUTIONS
             </span>
           </div>
         </Link>
@@ -56,7 +60,7 @@ export const Header = () => {
             <Link
               key={item.path}
               to={item.path}
-              className={`text-sm font-medium transition-colors hover:text-primary ${
+              className={`text-base lg:text-lg font-medium transition-colors hover:text-primary ${
                 location.pathname === item.path
                   ? "text-primary"
                   : "text-foreground/70"
@@ -68,8 +72,7 @@ export const Header = () => {
           <Button
             asChild
             variant="default"
-            size="sm"
-            className="bg-primary text-primary-foreground"
+            className="bg-primary text-base font-semibold text-primary-foreground px-5"
           >
             <Link to="/contact">Get Quote</Link>
           </Button>
@@ -100,7 +103,7 @@ export const Header = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`text-lg font-semibold transition-colors hover:text-primary ${
+                    className={`text-xl font-semibold transition-colors hover:text-primary ${
                       location.pathname === item.path
                         ? "text-primary"
                         : "text-foreground/70"
@@ -109,7 +112,10 @@ export const Header = () => {
                     {item.name}
                   </Link>
                 ))}
-                <Button className="mt-4 bg-primary text-primary-foreground" asChild>
+                <Button
+                  className="mt-4 bg-primary text-base font-semibold text-primary-foreground"
+                  asChild
+                >
                   <Link to="/contact">Get Quote</Link>
                 </Button>
               </nav>

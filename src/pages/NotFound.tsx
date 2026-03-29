@@ -4,7 +4,11 @@ import PageMeta from "@/components/common/PageMeta";
 export default function NotFound() {
   return (
     <>
-      <PageMeta title="Page Not Found" description="" />
+      <PageMeta
+        title="Page Not Found | Pragati Solar Solutions"
+        description="The requested Pragati Solar Solutions page could not be found. Return to the homepage to explore our solar services, gallery, and contact options."
+        keywords="404, page not found, solar website, Pragati Solar"
+      />
       <div className="relative flex flex-col items-center justify-center min-h-screen p-6 overflow-hidden z-1">
         <div className="mx-auto w-full max-w-[242px] text-center sm:max-w-[472px]">
           <h1 className="mb-8 font-bold text-gray-800 text-title-md dark:text-white/90 xl:text-title-2xl">

@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { MainLayout } from '@/components/layouts/MainLayout';
+import PageMeta from '@/components/common/PageMeta';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Camera, Home, Building2, MoveRight } from 'lucide-react';
 
@@ -137,6 +138,11 @@ const GalleryGrid = () => (
 const GalleryPage = () => {
   return (
     <MainLayout>
+      <PageMeta
+        title="Solar Project Gallery | Pragati Solar Solutions"
+        description="Explore our portfolio of residential and commercial solar installations. See real rooftop solar projects, commercial solar farms, and sustainable solar energy solutions."
+        keywords="solar project gallery, solar installation photos, rooftop solar portfolio, commercial solar gallery, renewable energy projects"
+      />
       <section className="pt-32 pb-16 bg-background">
          <div className="container px-4 text-center">
             <motion.h1 
