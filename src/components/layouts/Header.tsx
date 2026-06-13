@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const navItems = [
   { name: "Home", path: "/" },
+  { name: "About Us", path: "/about" },
   { name: "Installation Process", path: "/process" },
   { name: "Gallery", path: "/gallery" },
   { name: "FAQ", path: "/faq" },

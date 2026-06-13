@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
 import { Instagram, Mail, MapPin, Phone, Facebook, Youtube } from "lucide-react";
 
+const quickLinks = [
+  { name: "Home", path: "/" },
+  { name: "About Us", path: "/about" },
+  { name: "Installation Process", path: "/process" },
+  { name: "Gallery", path: "/gallery" },
+  { name: "FAQ", path: "/faq" },
+  { name: "Contact Us", path: "/contact" },
+];
+
 export const Footer = () => {
   return (
     <footer className="bg-card border-t py-16 md:py-24">
@@ -68,22 +77,16 @@ export const Footer = () => {
               Quick Links
             </h4>
             <ul className="space-y-4">
-              {["Home", "Installation Process", "Gallery", "FAQ", "Contact Us"].map(
-                (item) => (
-                  <li key={item}>
-                    <Link
-                      to={
-                        item === "Home"
-                          ? "/"
-                          : `/${item.toLowerCase().split(" ")[0]}`
-                      }
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      {item}
-                    </Link>
-                  </li>
-                )
-              )}
+              {quickLinks.map((item) => (
+                <li key={item.path}>
+                  <Link
+                    to={item.path}
+                    className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

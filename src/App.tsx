@@ -5,14 +5,9 @@ import { Toaster } from '@/components/ui/sonner';
 
 import routes from './routes';
 
-// import { AuthProvider } from '@/contexts/AuthContext';
-// import { RouteGuard } from '@/components/common/RouteGuard';
-
 const App: React.FC = () => {
   return (
     <Router>
-      {/*<AuthProvider>*/}
-      {/*<RouteGuard>*/}
       <IntersectObserver />
       <div className="flex flex-col min-h-screen">
         {/*<Header />*/}
@@ -30,8 +25,6 @@ const App: React.FC = () => {
         </main>
       </div>
       <Toaster />
-      {/*</RouteGuard>*/}
-      {/*</AuthProvider>*/}
     </Router>
   );
 };

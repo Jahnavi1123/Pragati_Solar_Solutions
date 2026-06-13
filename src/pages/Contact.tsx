@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { submitContactInquiry } from "@/lib/contactInquiries";
 import { MainLayout } from "@/components/layouts/MainLayout";
 import { Button } from "@/components/ui/button";
 import PageMeta from "@/components/common/PageMeta";
@@ -47,12 +46,21 @@ const ContactForm = () => {
     setError(null);
 
     try {
-      const result = await submitContactInquiry(formData);
+      const message = [
+        "New Solar Inquiry from Website",
+        "",
+        `Name: ${formData.name}`,
+        `Phone: ${formData.phone}`,
+        `Email: ${formData.email}`,
+        `Installation Type: ${formData.installationType}`,
+        `System Choice: ${formData.systemChoice || "Not selected"}`,
+        "",
+        `Message / Address: ${formData.message || "Not provided"}`,
+      ].join("\n");
 
-      if (!result.ok || !result.inquiryStored) {
-        setError("Could not submit form. Please try again.");
-        return;
-      }
+      window.location.href = `https://wa.me/917253990990?text=${encodeURIComponent(
+        message,
+      )}`;
 
       setIsSuccess(true);
       setFormData({
@@ -65,7 +73,7 @@ const ContactForm = () => {
       });
     } catch (err) {
       console.error(err);
-      setError("Unexpected error. Please try again.");
+      setError("Could not open WhatsApp. Please call us directly.");
     } finally {
       setIsSubmitting(false);
     }
@@ -84,8 +92,8 @@ const ContactForm = () => {
         <div className="space-y-4">
           <h3 className="text-3xl font-black gradient-text">THANK YOU!</h3>
           <p className="text-muted-foreground leading-relaxed">
-            Your inquiry has been received. Our team will contact you within 24
-            hours to schedule a site visit.
+            Your inquiry has been opened in WhatsApp. Please send the message,
+            and our team will contact you to schedule a site visit.
           </p>
         </div>
         <Button
@@ -279,8 +287,7 @@ const ContactForm = () => {
           </Button>
 
           <p className="text-center text-xs text-muted-foreground">
-            By submitting, you agree that we may store your contact details and
-            notify our team so we can follow up by phone, email, or WhatsApp.
+            Submitting opens WhatsApp with these details filled in.
           </p>
         </form>
       </div>
