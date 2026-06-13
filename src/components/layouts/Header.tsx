@@ -82,7 +82,7 @@ export const Header = () => {
         {/* Mobile Nav */}
         <div className="md:hidden flex items-center gap-4">
           <a
-            href="https://www.instagram.com/pragatisolarsolution/"
+            href="https://www.instagram.com/pragati_solarsolutions/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-foreground/70 hover:text-primary transition-colors"

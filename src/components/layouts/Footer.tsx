@@ -42,7 +42,7 @@ export const Footer = () => {
             <div className="flex items-center gap-4">
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/pragatisolarsolution/"
+                href="https://www.instagram.com/pragati_solarsolutions/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-background border flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300 shadow-md"
